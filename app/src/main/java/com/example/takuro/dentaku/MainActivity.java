@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
     private String operator;
     private double first_num, second_num;
     private double answer = 0;
-    private boolean first_flag = true;
+    private boolean first_flag = true, equal_flag = false ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +64,14 @@ public class MainActivity extends Activity {
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
@@ -75,19 +83,36 @@ public class MainActivity extends Activity {
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+               /* if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
-                second_num = num;
+                second_num = num;*/
 
             }
         });
 
-        button0.setOnClickListener(new View.OnClickListener() {
+        button000.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
+                prev_num *= 100;
                 num = prev_num;
+
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
                 second_num = num;
@@ -99,6 +124,14 @@ public class MainActivity extends Activity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num + 1;
                 prev_num += 1;
                 resultText.setText(Double.toString(num));
@@ -110,6 +143,15 @@ public class MainActivity extends Activity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num + 2;
                 prev_num += 2;
                 resultText.setText(Double.toString(num));
@@ -121,6 +163,14 @@ public class MainActivity extends Activity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num + 3;
                 prev_num += 3;
                 resultText.setText(Double.toString(num));
@@ -132,6 +182,14 @@ public class MainActivity extends Activity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num + 4;
                 prev_num += 4;
                 resultText.setText(Double.toString(num));
@@ -143,6 +201,14 @@ public class MainActivity extends Activity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num + 5;
                 prev_num += 5;
                 resultText.setText(Double.toString(num));
@@ -154,6 +220,14 @@ public class MainActivity extends Activity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num + 6;
                 prev_num += 6;
                 resultText.setText(Double.toString(num));
@@ -165,6 +239,14 @@ public class MainActivity extends Activity {
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num + 7;
                 prev_num += 7;
                 resultText.setText(Double.toString(num));
@@ -176,6 +258,14 @@ public class MainActivity extends Activity {
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num + 8;
                 prev_num += 8;
                 resultText.setText(Double.toString(num));
@@ -187,6 +277,14 @@ public class MainActivity extends Activity {
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equal_flag == true){
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
                 num = prev_num + 9;
                 prev_num += 9;
                 resultText.setText(Double.toString(num));
@@ -207,6 +305,7 @@ public class MainActivity extends Activity {
                 num = 0;
                 prev_num = 0;
                 first_flag = false;
+                equal_flag = false;
             }
         });
 
@@ -222,6 +321,7 @@ public class MainActivity extends Activity {
                 num = 0;
                 prev_num = 0;
                 first_flag = false;
+                equal_flag = false;
             }
         });
 
@@ -237,6 +337,7 @@ public class MainActivity extends Activity {
                 num = 0;
                 prev_num = 0;
                 first_flag = false;
+                equal_flag = false;
             }
         });
 
@@ -252,6 +353,7 @@ public class MainActivity extends Activity {
                 num = 0;
                 prev_num = 0;
                 first_flag = false;
+                equal_flag = false;
             }
         });
 
@@ -273,17 +375,11 @@ public class MainActivity extends Activity {
                 resultText.setText(Double.toString(answer));
                 num = answer;
                 first_num = num;
-
+                equal_flag = true;
 
             }
         });
 
-
     }
-
-
-
-
-
 
 }
