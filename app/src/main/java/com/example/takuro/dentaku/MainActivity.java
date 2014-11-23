@@ -14,6 +14,10 @@ public class MainActivity extends Activity {
     private TextView resultText;
     private double prev_num = 0;
     private double num;
+    private String operator;
+    private double first_num, second_num;
+    private double answer = 0;
+    private boolean first_flag = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +33,15 @@ public class MainActivity extends Activity {
         Button button7 = (Button)findViewById(R.id.button7);
         Button button8 = (Button)findViewById(R.id.button8);
         Button button9 = (Button)findViewById(R.id.button9);
+        Button button000 = (Button)findViewById(R.id.button000);
+        Button buttonDot = (Button)findViewById(R.id.buttonDot);
         Button buttonC = (Button)findViewById(R.id.buttonC);
         Button buttonPlus = (Button)findViewById(R.id.buttonPlus);
         Button buttonMinus = (Button)findViewById(R.id.buttonMinus);
+        Button buttonMult = (Button)findViewById(R.id.buttonMult);
+        Button buttonDiv = (Button)findViewById(R.id.buttonDiv);
+        Button buttonEqual = (Button)findViewById(R.id.buttonEqual);
+
 
 
 
@@ -43,6 +53,9 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 num = 0;
                 prev_num = 0;
+                first_num = 0;
+                second_num = 0;
+                operator = "null";
                 resultText.setText(Double.toString(num));
             }
         });
@@ -54,8 +67,34 @@ public class MainActivity extends Activity {
                 num = prev_num;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
+                second_num = num;
+
             }
         });
+
+        buttonDot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                num = prev_num;
+                resultText.setText(Double.toString(num));
+                prev_num *= 10;
+                second_num = num;
+
+            }
+        });
+
+        button0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                num = prev_num;
+                resultText.setText(Double.toString(num));
+                prev_num *= 10;
+                second_num = num;
+
+            }
+        });
+
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +103,7 @@ public class MainActivity extends Activity {
                 prev_num += 1;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
+                second_num = num;
             }
         });
 
@@ -74,6 +114,7 @@ public class MainActivity extends Activity {
                 prev_num += 2;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
+                second_num = num;
             }
         });
 
@@ -84,6 +125,7 @@ public class MainActivity extends Activity {
                 prev_num += 3;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
+                second_num = num;
             }
         });
 
@@ -94,6 +136,7 @@ public class MainActivity extends Activity {
                 prev_num += 4;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
+                second_num = num;
             }
         });
 
@@ -104,6 +147,7 @@ public class MainActivity extends Activity {
                 prev_num += 5;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
+                second_num = num;
             }
         });
 
@@ -114,6 +158,7 @@ public class MainActivity extends Activity {
                 prev_num += 6;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
+                second_num = num;
             }
         });
 
@@ -124,6 +169,7 @@ public class MainActivity extends Activity {
                 prev_num += 7;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
+                second_num = num;
             }
         });
 
@@ -134,6 +180,7 @@ public class MainActivity extends Activity {
                 prev_num += 8;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
+                second_num = num;
             }
         });
 
@@ -144,10 +191,93 @@ public class MainActivity extends Activity {
                 prev_num += 9;
                 resultText.setText(Double.toString(num));
                 prev_num *= 10;
+                second_num = num;
             }
         });
 
-        
+        buttonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(operator != "null"){
+                    num = first_num;
+                }
+                resultText.setText(Double.toString(num) + "+");
+                operator = "+";
+                first_num = num;
+                num = 0;
+                prev_num = 0;
+                first_flag = false;
+            }
+        });
+
+        buttonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(operator != "null"){
+                    num = first_num;
+                }
+                resultText.setText(Double.toString(num) + "-");
+                operator = "-";
+                first_num = num;
+                num = 0;
+                prev_num = 0;
+                first_flag = false;
+            }
+        });
+
+        buttonMult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(operator != "null" && first_flag == false){
+                    num = first_num;
+                }
+                resultText.setText(Double.toString(num) + "×");
+                operator = "*";
+                first_num = num;
+                num = 0;
+                prev_num = 0;
+                first_flag = false;
+            }
+        });
+
+        buttonDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(operator != "null"){
+                    num = first_num;
+                }
+                resultText.setText(Double.toString(num) + "÷");
+                operator = "/";
+                first_num = num;
+                num = 0;
+                prev_num = 0;
+                first_flag = false;
+            }
+        });
+
+        buttonEqual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(operator == "+"){
+                    answer = first_num + second_num;
+                }else if(operator == "-"){
+                    answer = first_num - second_num;
+                }else if(operator == "*"){
+                    answer = first_num * second_num;
+                }else if(operator == "/"){
+                    answer = first_num / second_num;
+                }else if(operator == "null"){
+                    answer = num;
+                }
+                resultText.setText(Double.toString(answer));
+                num = answer;
+                first_num = num;
+
+
+            }
+        });
+
 
     }
 
