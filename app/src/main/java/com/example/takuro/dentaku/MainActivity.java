@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import static java.lang.Math.pow;
+
 public class MainActivity extends Activity {
     private TextView resultText;
     private double prev_num = 0;
@@ -17,7 +19,8 @@ public class MainActivity extends Activity {
     private String operator = "null";
     private double first_num, second_num;
     private double answer = 0;
-    private boolean first_flag = true, equal_flag = false ;
+    private boolean first_flag = true, equal_flag = false;
+    private int dot_count = 0;
 
 
 
@@ -57,6 +60,7 @@ public class MainActivity extends Activity {
                 prev_num = 0;
                 first_num = 0;
                 second_num = 0;
+                dot_count = 0;
                 operator = "null";
                 resultText.setText(cutPoint(num));
             }
@@ -66,14 +70,44 @@ public class MainActivity extends Activity {
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonNumberFunc(0);
+                if(equal_flag == true) {
+                    num = 0;
+                    prev_num = 0;
+                    first_num = 0;
+                    second_num = 0;
+                    dot_count = 0;
+                    operator = "null";
+                    equal_flag = false;
+                }
+                if(dot_count > 0) {
+                    num = prev_num + (0 / pow(10, dot_count));
+                    prev_num += (0 / pow(10, dot_count));
+                    String zero = "";
+                    for(int i=0; dot_count>i; i++){
+                        zero = zero + "0";
+                    }
+                    if(dot_count == 1 || num%1 == 0){
+                        resultText.setText(cutPoint(num) + "." + zero);
+                    }else{
+                        resultText.setText(cutPoint(num) + zero);
+                    }
+
+                    second_num = num;
+                    dot_count++;
+                }else {
+                    num = prev_num + 0;
+                    prev_num += 0;
+                    resultText.setText(cutPoint(num));
+                    prev_num *= 10;
+                    second_num = num;
+                }
             }
         });
 
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* prev_num /= 10;
+
                 if(equal_flag == true){
                     num = 0;
                     prev_num = 0;
@@ -82,10 +116,15 @@ public class MainActivity extends Activity {
                     operator = "null";
                     equal_flag = false;
                 }
-                num = prev_num;
-                resultText.setText(cutPoint(num) + ".");
-                prev_num *= 10;
-                second_num = num;*/
+
+                second_num = num;
+                if(dot_count == 0) {
+                    prev_num /= 10;
+                    num = prev_num;
+                    resultText.setText(cutPoint(num) + ".");
+
+                    dot_count = 1;
+                }
 
             }
         });
@@ -101,13 +140,14 @@ public class MainActivity extends Activity {
                     operator = "null";
                     equal_flag = false;
                 }
-                prev_num *= 100;
-                num = prev_num;
+                if(dot_count ==0) {
+                    prev_num *= 100;
+                    num = prev_num;
 
-                resultText.setText(cutPoint(num));
-                prev_num *= 10;
-                second_num = num;
-
+                    resultText.setText(cutPoint(num));
+                    prev_num *= 10;
+                    second_num = num;
+                }
             }
         });
 
@@ -225,6 +265,7 @@ public class MainActivity extends Activity {
                 num = answer;
                 first_num = num;
                 equal_flag = true;
+                dot_count = 0;
 
             }
         });
@@ -237,14 +278,24 @@ public class MainActivity extends Activity {
             prev_num = 0;
             first_num = 0;
             second_num = 0;
+            dot_count = 0;
             operator = "null";
             equal_flag = false;
         }
-        num = prev_num + n;
-        prev_num += n;
-        resultText.setText(cutPoint(num));
-        prev_num *= 10;
-        second_num = num;
+        if(dot_count > 0) {
+           num = prev_num + (n / pow(10, dot_count));
+            prev_num += (n / pow(10, dot_count));
+            resultText.setText(cutPoint(num));
+            second_num = num;
+            dot_count++;
+        }else {
+            num = prev_num + n;
+            prev_num += n;
+            resultText.setText(cutPoint(num));
+            prev_num *= 10;
+            second_num = num;
+        }
+
     }
 
     public void buttonOperatorFunc(String n){
@@ -258,6 +309,7 @@ public class MainActivity extends Activity {
         prev_num = 0;
         first_flag = false;
         equal_flag = false;
+        dot_count = 0;
     }
 
     public String cutPoint(double num){
